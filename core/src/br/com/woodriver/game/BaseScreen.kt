@@ -1,15 +1,19 @@
-package game
+package br.com.woodriver.game
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20.GL_COLOR_BUFFER_BIT
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.ui.Table
 
 abstract class BaseScreen(
-        val mainStage: Stage,
-        val uiStage: Stage
+    val mainStage: Stage,
+    private val uiStage: Stage,
+    val uiTable: Table
 ): Screen {
-    constructor(): this(Stage(), Stage()){
+    constructor(): this(Stage(), Stage(), Table()){
+        uiTable.setFillParent(true)
+        uiStage.addActor(uiTable)
         initialize()
     }
 

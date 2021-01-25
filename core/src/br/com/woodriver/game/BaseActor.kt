@@ -1,4 +1,4 @@
-package game
+package br.com.woodriver.game
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
