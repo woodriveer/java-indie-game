@@ -1,6 +1,24 @@
-sourceCompatibility = 1.7
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-core'
 
-sourceSets.main.java.srcDirs = [ "src/" ]
-
-eclipse.project.name = appName + "-core"
+dependencies {
+	api "com.badlogicgames.gdx:gdx:$gdxVersion"
+	api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+	api "com.squidpony:squidlib:$squidLibVersion"
+	api "com.squidpony:squidlib-util:$squidLibUtilVersion"
+	api "com.github.tommyettinger:regexodus:$regExodusVersion"
+	api "com.github.tommyettinger:anim8-gdx:$anim8Version"
+	api "io.github.libktx:ktx-assets:$ktxAssetsVersion"
+	api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+	api "io.github.libktx:ktx-freetype:$ktxFreetypeVersion"
+	api "io.github.libktx:ktx-collections:$ktxCollectionsVersion"
+	api "io.github.libktx:ktx-actors:$ktxActorsVersion"
+	api "io.github.libktx:ktx-i18n:$ktxI18nVersion"
+	api "com.squidpony:squidlib-extra:$squidLibExtraVersion"
+	api "com.badlogicgames.ashley:ashley:$ashleyVersion"
+	api "io.github.libktx:ktx-ashley:$ktxAshleyVersion"
+	api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+	api "io.github.libktx:ktx-box2d:$ktxBox2dVersion"
+	api "io.github.libktx:ktx-app:$ktxAppVersion"
+	api "com.google.guava:guava:r05"
+}
