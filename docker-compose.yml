@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  wiremock:
+    container_name: redgirl-mocks
+    image: rodolpheche/wiremock:2.26.3-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mocks/stubs:/home/wiremock
