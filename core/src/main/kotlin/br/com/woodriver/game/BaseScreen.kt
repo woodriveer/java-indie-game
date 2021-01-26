@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table
 
 abstract class BaseScreen(
     val mainStage: Stage,
-    private val uiStage: Stage,
+    val uiStage: Stage,
     val uiTable: Table
 ): Screen {
     constructor(): this(Stage(), Stage(), Table()){

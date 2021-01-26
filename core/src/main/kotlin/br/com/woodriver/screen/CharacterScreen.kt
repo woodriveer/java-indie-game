@@ -10,7 +10,7 @@ class CharacterScreen: BaseScreen() {
     override fun initialize() {
         println("Character Screen initialized")
         val background = BaseActor(0F, 0F, mainStage)
-        background.loadTexture(getResourcePath("core/assets/background.png"))
+        background.loadTexture(getResourcePath("background.png"))
         background.setSize(800F, 600F)
     }
 

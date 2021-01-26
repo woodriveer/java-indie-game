@@ -1,8 +1,8 @@
 package lwjgl3
 
-import kotlin.jvm.JvmStatic
+import br.com.woodriver.RedGirlGame
+import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
-import br.com.woodriver.App
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 
 /** Launches the desktop (LWJGL3) application.  */
@@ -13,14 +13,14 @@ object Lwjgl3Launcher {
     }
 
     private fun createApplication(): Lwjgl3Application {
-        return Lwjgl3Application(App(), defaultConfiguration)
+        return Lwjgl3Application(RedGirlGame, defaultConfiguration)
     }
 
     private val defaultConfiguration: Lwjgl3ApplicationConfiguration
         private get() {
             val configuration = Lwjgl3ApplicationConfiguration()
             configuration.setTitle("RedGirl")
-            configuration.setWindowedMode(640, 480)
+            configuration.setWindowedMode(800, 600)
             configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png")
             return configuration
         }

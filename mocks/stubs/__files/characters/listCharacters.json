@@ -1,0 +1,18 @@
+{
+  "characters": [
+    {
+      "name": "Yan",
+      "race": "Human",
+      "class": "Mage",
+      "level": 1,
+      "gender": "Male"
+    },
+    {
+      "name": "Baby",
+      "race": "Elf",
+      "class": "Warrior",
+      "level": 20,
+      "gender": "Female"
+    }
+  ]
+}
