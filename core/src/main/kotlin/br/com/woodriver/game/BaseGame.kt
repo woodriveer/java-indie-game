@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.NinePatch
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle
@@ -17,6 +18,7 @@ abstract class BaseGame: Game() {
 
     val textButtonStyle: TextButtonStyle
     val textFieldStyle: TextFieldStyle
+    lateinit var labelCharacterStyle: Label.LabelStyle
     lateinit var textFieldSkin: Skin
 
     init {
@@ -49,6 +51,7 @@ abstract class BaseGame: Game() {
         textButtonStyle.font = customFont
         textButtonStyle.fontColor = Color.WHITE
 
+        labelCharacterStyle = Label.LabelStyle(customFont, Color.WHITE)
     }
 
     fun setActiveScreen(screen: BaseScreen){

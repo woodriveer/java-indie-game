@@ -1,18 +1,19 @@
 package br.com.woodriver.screen
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input.Keys
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton
-import br.com.woodriver.game.BaseActor
-import br.com.woodriver.game.BaseScreen
 import br.com.woodriver.RedGirlGame
+import br.com.woodriver.api.RedGirlClient
+import br.com.woodriver.api.impl.RedGirlClientImpl
 import br.com.woodriver.extensions.addCleanTextListener
 import br.com.woodriver.extensions.isMouseTouchDown
-import com.badlogic.gdx.scenes.scene2d.InputEvent
-import com.badlogic.gdx.scenes.scene2d.ui.Skin
+import br.com.woodriver.game.BaseActor
+import br.com.woodriver.game.BaseScreen
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.ui.TextField
 
 class LoginScreen: BaseScreen() {
+    private val redGirlClient: RedGirlClient = RedGirlClientImpl()
+
     override fun initialize() {
         val background = BaseActor(0F, 0F, mainStage)
         background.loadTexture("background.png")
@@ -26,7 +27,13 @@ class LoginScreen: BaseScreen() {
 
         loginButton.addListener {
             if(it.isMouseTouchDown()) {
-                RedGirlGame.setActiveScreen(CharacterScreen())
+                try {
+                    val userId = redGirlClient.login(userNameTextField.text, passwordTextField.text)
+                    RedGirlGame.setActiveScreen(CharacterScreen(userId))
+                } catch (e: Exception){
+                    e.printStackTrace()
+                    println("Username/Password invalid")
+                }
                 true
             } else false
         }
@@ -51,7 +58,5 @@ class LoginScreen: BaseScreen() {
     }
 
     override fun update(p0: Float) {
-        if (Gdx.input.isKeyPressed(Keys.S))
-            RedGirlGame.setActiveScreen(CharacterScreen())
     }
 }

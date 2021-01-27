@@ -3,14 +3,14 @@
     {
       "name": "Yan",
       "race": "Human",
-      "class": "Mage",
+      "clazz": "Mage",
       "level": 1,
       "gender": "Male"
     },
     {
       "name": "Baby",
       "race": "Elf",
-      "class": "Warrior",
+      "clazz": "Warrior",
       "level": 20,
       "gender": "Female"
     }
