@@ -1,6 +1,7 @@
 {
   "characters": [
     {
+      "id": 19239,
       "name": "Yan",
       "race": "Human",
       "clazz": "Mage",
@@ -8,6 +9,7 @@
       "gender": "Male"
     },
     {
+      "id": 20123,
       "name": "Baby",
       "race": "Elf",
       "clazz": "Warrior",

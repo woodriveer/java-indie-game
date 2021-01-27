@@ -9,30 +9,30 @@ import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 
-class CharacterScreen(): BaseScreen() {
-    private val redGirlClient: RedGirlClient = RedGirlClientImpl()
+open class CharacterScreen(): BaseScreen() {
 
     override fun initialize() {
-        println("Character Screen initialized")
-        val background = BaseActor(0F, 0F, mainStage)
-        background.loadTexture(getResourcePath("background.png"))
-        background.setSize(800F, 600F)
-    }
+        val redGirlClient: RedGirlClient = RedGirlClientImpl()
 
-    constructor(userId: Int): this() {
-        redGirlClient.loadCharacters(userId).characters.map {
+        println("Character Screen initialized")
+        uiTable.clear()
+        val background = BaseActor(0F, 0F, mainStage)
+        background.loadTexture(getResourcePath("background-gray.png"))
+        background.setSize(800F, 600F)
+
+        redGirlClient.loadCharacters(RedGirlGame.userId).characters.map {
             val characterButton = TextButton(it.name, RedGirlGame.textButtonStyle)
 
             characterButton.addListener { event ->
                 if(event.isMouseTouchDown()) {
-                    RedGirlGame.setActiveScreen(LevelScreen())
+                    RedGirlGame.setActiveScreen(LevelScreen(it))
                     true
                 } else false
             }
 
             uiTable.pad(20F)
             uiTable.add().expandX().expandY()
-            uiTable.add(characterButton).bottom().right()
+            uiTable.add(characterButton).top().right()
         }
     }
 

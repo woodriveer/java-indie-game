@@ -6,6 +6,7 @@ data class CharactersResponse(
     val characters: List<Character> = arrayListOf()
 ) {
     data class Character(
+        val id: Int = 0,
         val name: String = "",
         val race: String = "",
         val clazz: String = "",

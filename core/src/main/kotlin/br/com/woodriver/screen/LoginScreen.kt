@@ -28,8 +28,8 @@ class LoginScreen: BaseScreen() {
         loginButton.addListener {
             if(it.isMouseTouchDown()) {
                 try {
-                    val userId = redGirlClient.login(userNameTextField.text, passwordTextField.text)
-                    RedGirlGame.setActiveScreen(CharacterScreen(userId))
+                    RedGirlGame.userId = redGirlClient.login(userNameTextField.text, passwordTextField.text)
+                    RedGirlGame.setActiveScreen(CharacterScreen())
                 } catch (e: Exception){
                     e.printStackTrace()
                     println("Username/Password invalid")
