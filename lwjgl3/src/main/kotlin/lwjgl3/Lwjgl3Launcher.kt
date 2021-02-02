@@ -1,7 +1,6 @@
 package lwjgl3
 
 import br.com.woodriver.RedGirlGame
-import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 

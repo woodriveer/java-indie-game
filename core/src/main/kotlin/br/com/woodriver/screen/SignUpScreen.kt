@@ -19,7 +19,7 @@ class SignUpScreen: BaseScreen() {
 
     override fun initialize() {
         logger = logger<SignUpScreen>()
-        logger.error("Sign Up Screen initialized")
+        logger.info("Sign Up Screen initialized")
         val background = BaseActor(0F, 0F, mainStage)
         background.loadTexture(getResourcePath("background.png"))
         background.setSize(800F, 600F)

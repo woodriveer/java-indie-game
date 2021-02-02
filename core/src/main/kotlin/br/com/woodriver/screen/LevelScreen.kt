@@ -18,6 +18,5 @@ class LevelScreen(): BaseScreen() {
     }
 
     override fun update(p0: Float) {
-        TODO("Not yet implemented")
     }
 }
