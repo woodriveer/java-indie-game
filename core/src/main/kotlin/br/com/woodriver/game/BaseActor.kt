@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import java.util.*
 
-class BaseActor(): Actor() {
+open class BaseActor(): Actor() {
 
     var animation: Animation<TextureRegion>? = null
     var elapsedTime: Float = 0F
@@ -22,6 +22,8 @@ class BaseActor(): Actor() {
     var acceleration: Float = 0F
     var maxSpeed: Float = 1000F
     var deceleration: Float = 0F
+    var animRotation: Float = 0F
+    var flip = false
 
     var boundaryPolygon: Polygon? = null
 
@@ -40,6 +42,52 @@ class BaseActor(): Actor() {
         centerAtPosition(other.x + other.width / 2, other.y + other.height / 2)
     }
 
+    open fun accelerateAtAngle(angle: Float, direction: Direction) {
+        accelerationVec.add(
+            Vector2(acceleration, 0F).setAngleDeg(angle)
+        )
+        animRotation = 0F
+        if (direction == Direction.LEFT)
+            flip = false
+        else if (direction == Direction.RIGHT)
+            flip = true
+    }
+
+    open fun getMotionAngle(): Float {
+        return velocityVec.angleDeg()
+    }
+
+    open fun getSpeed(): Float {
+        return velocityVec.len()
+    }
+
+
+    open fun setSpeed(speed: Float) {
+        // if length is zero, then assume motion angle is zero degrees
+        if (velocityVec.len() == 0f) velocityVec[speed] = 0f else velocityVec.setLength(speed)
+    }
+
+    open fun applyPhysics(dt: Float) {
+        // apply acceleration
+        velocityVec.add(accelerationVec.x * dt, accelerationVec.y * dt)
+        var speed: Float = getSpeed()
+
+        // decrease speed (decelerate) when not accelerating
+        if (accelerationVec.len() == 0f) speed -= deceleration * dt
+
+        // keep speed within set bounds
+        speed = MathUtils.clamp(speed, 0f, maxSpeed)
+
+        // update velocity
+        setSpeed(speed)
+
+        // update position according to value stored in velocity vector
+        moveBy(velocityVec.x * dt, velocityVec.y * dt)
+
+        // reset acceleration
+        accelerationVec[0f] = 0f
+    }
+
     fun setAnim(anim: Animation<TextureRegion>) {
         animation = anim
         val textureRegion = animation!!.getKeyFrame(0F)
@@ -53,13 +101,13 @@ class BaseActor(): Actor() {
         }
     }
 
-    fun loadTexture(fileName: String?): Animation<TextureRegion>? {
-        val fileNames = arrayOfNulls<String>(1)
+    fun loadTexture(fileName: String): Animation<TextureRegion>? {
+        val fileNames = arrayOf("")
         fileNames[0] = fileName
         return loadAnimationFromFiles(fileNames, 1f, true)
     }
 
-    fun loadAnimationFromFiles(fileNames: Array<String?>, frameDuration: Float, loop: Boolean): Animation<TextureRegion>? {
+    fun loadAnimationFromFiles(fileNames: Array<String>, frameDuration: Float, loop: Boolean): Animation<TextureRegion>? {
         val fileCount = fileNames.size
         val textureArray = com.badlogic.gdx.utils.Array<TextureRegion>()
         for (n in 0 until fileCount) {
@@ -184,7 +232,15 @@ class BaseActor(): Actor() {
         val c = color
         batch.setColor(c.r, c.g, c.b, c.a)
         if (animation != null && isVisible) batch.draw(animation!!.getKeyFrame(elapsedTime),
-                x, y, originX, originY,
-                width, height, scaleX, scaleY, rotation)
+            if(flip) x+width else x,
+            y, originX, originY,
+            if (flip) -width else width,
+            height, scaleX, scaleY, animRotation)
+    }
+
+    companion object {
+        enum class Direction {
+            UP, DOWN, LEFT, RIGHT
+        }
     }
 }
