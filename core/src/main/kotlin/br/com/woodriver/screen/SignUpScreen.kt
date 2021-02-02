@@ -5,15 +5,21 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input.Keys
 import br.com.woodriver.extensions.getResourcePath
 import br.com.woodriver.extensions.isMouseTouchDown
+import br.com.woodriver.extensions.logger
 import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
+import br.com.woodriver.utils.Logger
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.ui.TextField
 
 class SignUpScreen: BaseScreen() {
+
+    private lateinit var logger: Logger
+
     override fun initialize() {
-        println("Sign Up Screen initialized")
+        logger = logger<SignUpScreen>()
+        logger.error("Sign Up Screen initialized")
         val background = BaseActor(0F, 0F, mainStage)
         background.loadTexture(getResourcePath("background.png"))
         background.setSize(800F, 600F)
@@ -31,7 +37,7 @@ class SignUpScreen: BaseScreen() {
         confirmButton.addListener {
             if(it.isMouseTouchDown()){
                 //TODO: implement create user
-                    println("Confirmed")
+                    logger.info("Confirmed")
                 RedGirlGame.setActiveScreen(LoginScreen())
                 true
             } else {
@@ -41,7 +47,7 @@ class SignUpScreen: BaseScreen() {
 
         cancelButton.addListener {
             if(it.isMouseTouchDown()) {
-                println("Cancelled")
+                logger.info("Cancelled")
                 RedGirlGame.setActiveScreen(LoginScreen())
                 true
             } else {
@@ -60,6 +66,6 @@ class SignUpScreen: BaseScreen() {
 
     override fun update(p0: Float) {
         if (Gdx.input.isKeyJustPressed(Keys.A))
-            println("Do nothing in Sign Up")
+            logger.info("Do nothing in Sign Up")
     }
 }

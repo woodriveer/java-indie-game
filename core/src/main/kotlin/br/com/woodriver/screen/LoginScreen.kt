@@ -5,6 +5,7 @@ import br.com.woodriver.api.RedGirlClient
 import br.com.woodriver.api.impl.RedGirlClientImpl
 import br.com.woodriver.extensions.addCleanTextListener
 import br.com.woodriver.extensions.isMouseTouchDown
+import br.com.woodriver.extensions.logger
 import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
 import com.badlogic.gdx.Gdx
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField
 
 class LoginScreen: BaseScreen() {
     private val redGirlClient: RedGirlClient = RedGirlClientImpl()
+    val logger = logger<LoginScreen>()
 
     override fun initialize() {
         val background = BaseActor(0F, 0F, mainStage)
@@ -32,7 +34,7 @@ class LoginScreen: BaseScreen() {
                     RedGirlGame.setActiveScreen(CharacterScreen())
                 } catch (e: Exception){
                     e.printStackTrace()
-                    println("Username/Password invalid")
+                    logger.warning("Username/Password invalid")
                 }
                 true
             } else false

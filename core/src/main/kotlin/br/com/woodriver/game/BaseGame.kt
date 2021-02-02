@@ -1,6 +1,7 @@
 package br.com.woodriver.game
 
 import br.com.woodriver.extensions.FONT_RAIDER_CRUSADER_PUNCH
+import br.com.woodriver.extensions.logger
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -20,9 +21,10 @@ abstract class BaseGame: Game() {
     val textFieldStyle: TextFieldStyle
     lateinit var labelCharacterStyle: Label.LabelStyle
     lateinit var textFieldSkin: Skin
+    private val logger = logger<BaseGame>()
 
     init {
-        println("BaseGame initialized")
+        logger.info("BaseGame initialized")
         textButtonStyle = TextButtonStyle()
         textFieldStyle = TextFieldStyle()
     }

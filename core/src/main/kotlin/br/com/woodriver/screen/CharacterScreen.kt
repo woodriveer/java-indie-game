@@ -5,16 +5,18 @@ import br.com.woodriver.api.RedGirlClient
 import br.com.woodriver.api.impl.RedGirlClientImpl
 import br.com.woodriver.extensions.getResourcePath
 import br.com.woodriver.extensions.isMouseTouchDown
+import br.com.woodriver.extensions.logger
 import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 
-open class CharacterScreen(): BaseScreen() {
+open class CharacterScreen: BaseScreen() {
 
     override fun initialize() {
+        val logger = logger<CharacterScreen>()
         val redGirlClient: RedGirlClient = RedGirlClientImpl()
 
-        println("Character Screen initialized")
+        logger.warning("Character Screen initialized")
         uiTable.clear()
         val background = BaseActor(0F, 0F, mainStage)
         background.loadTexture(getResourcePath("background-gray.png"))
@@ -23,8 +25,10 @@ open class CharacterScreen(): BaseScreen() {
         redGirlClient.loadCharacters(RedGirlGame.userId).characters.map {
             val characterButton = TextButton(it.name, RedGirlGame.textButtonStyle)
 
+            logger.error("Starting level screen with ${it.name}")
             characterButton.addListener { event ->
                 if(event.isMouseTouchDown()) {
+                    logger.info("Starting level screen with ${it.name}")
                     RedGirlGame.setActiveScreen(LevelScreen(it))
                     true
                 } else false

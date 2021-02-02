@@ -4,6 +4,7 @@ import br.com.woodriver.api.RedGirlClient
 import br.com.woodriver.api.request.LoginRequest
 import br.com.woodriver.api.response.CharactersResponse
 import br.com.woodriver.api.response.LoginResponse
+import br.com.woodriver.extensions.logger
 import br.com.woodriver.extensions.objectToJson
 import br.com.woodriver.extensions.resultToObject
 import com.squareup.okhttp.MediaType
@@ -15,16 +16,17 @@ class RedGirlClientImpl: RedGirlClient {
 
     private val apiUrl = "http://localhost:8080"
     private val client = OkHttpClient()
+    val logger = logger<RedGirlClient>()
 
     override fun login(user: String, password: String): Int {
-        println("Starting to login $user calling api")
+        logger.info("Starting to login $user calling api")
         val response = client.newCall(createRequest("$apiUrl/v1/login",
             RequestBody.create(
                 MediaType.parse("application/json"),
                 LoginRequest(user, password).objectToJson()
             ), POST
         )).execute()
-        println("Done requesting login for $user")
+        logger.info("Done requesting login for $user")
         return response.resultToObject<LoginResponse>().userId
     }
 
