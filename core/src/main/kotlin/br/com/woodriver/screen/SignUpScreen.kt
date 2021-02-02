@@ -1,14 +1,14 @@
 package br.com.woodriver.screen
 
 import br.com.woodriver.RedGirlGame
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input.Keys
 import br.com.woodriver.extensions.getResourcePath
 import br.com.woodriver.extensions.isMouseTouchDown
 import br.com.woodriver.extensions.logger
 import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
 import br.com.woodriver.utils.Logger
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.ui.TextField

@@ -3,7 +3,6 @@ package br.com.woodriver.screen
 import br.com.woodriver.RedGirlGame
 import br.com.woodriver.api.RedGirlClient
 import br.com.woodriver.api.impl.RedGirlClientImpl
-import br.com.woodriver.api.response.CharactersResponse
 import br.com.woodriver.extensions.getResourcePath
 import br.com.woodriver.extensions.isMouseTouchDown
 import br.com.woodriver.extensions.logger
@@ -11,7 +10,6 @@ import br.com.woodriver.game.BaseActor
 import br.com.woodriver.game.BaseScreen
 import br.com.woodriver.utils.Logger
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 
 open class CharacterScreen: BaseScreen() {
