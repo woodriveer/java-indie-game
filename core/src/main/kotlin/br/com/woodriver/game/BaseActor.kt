@@ -203,7 +203,7 @@ open class BaseActor(): Actor() {
         val list = ArrayList<BaseActor>()
         var theClass: Class<*>? = null
         try {
-            theClass = Class.forName(className)
+            theClass = Class.forName("${PACKAGE}$className")
         } catch (error: Exception) {
             error.printStackTrace()
         }
@@ -242,5 +242,7 @@ open class BaseActor(): Actor() {
         enum class Direction {
             UP, DOWN, LEFT, RIGHT
         }
+
+        const val PACKAGE = "br.com.woodriver.game."
     }
 }

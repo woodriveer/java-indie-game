@@ -15,6 +15,8 @@ class GameCharacter(private val character: Character,
 
     private val logger = logger<GameCharacter>()
 
+    val isAttacking = true
+
     constructor(character: Character,stage: Stage, width: Float, height: Float): this(character, 0F, 0F, stage) {
         acceleration = 2000F
         maxSpeed = 500F
@@ -36,7 +38,7 @@ class GameCharacter(private val character: Character,
         super.act(dt)
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) ||
-                Gdx.input.isKeyPressed(Input.Keys.A)) accelerateAtAngle(180F, Direction.LEFT)
+            Gdx.input.isKeyPressed(Input.Keys.A)) accelerateAtAngle(180F, Direction.LEFT)
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)||
             Gdx.input.isKeyPressed(Input.Keys.D)) accelerateAtAngle(0F,  Direction.RIGHT)
         if (Gdx.input.isKeyPressed(Input.Keys.UP)||
@@ -51,5 +53,10 @@ class GameCharacter(private val character: Character,
         boundToWorld()
 
         alignCamera()
+    }
+
+    fun getAttackDamage(): Float {
+        //TODO: Get Attack damage base on Attributes and Weapon
+        return 100F
     }
 }
